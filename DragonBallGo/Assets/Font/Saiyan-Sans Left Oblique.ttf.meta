@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 55f703c7a3f7246b082920525ae51cf7
+timeCreated: 1500117266
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Saiyan Sans - Left Oblique
+  fontNames:
+  - Saiyan Sans - Left Oblique
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

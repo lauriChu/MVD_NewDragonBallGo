@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4f05c25694611484e979e75904175b58
+timeCreated: 1500117266
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Saiyan Sans - Right Oblique
+  fontNames:
+  - Saiyan Sans - Right Oblique
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
