@@ -20,13 +20,12 @@ public class InitController : MonoBehaviour {
 	DontDestroyOnLoad (audio);
                                  
  }
- void Update () {
-     
- }
+	// onClick Listener for Login button
 	public void onClickLogin() 
 	{
 		Debug.Log("login");
-		SceneManager.LoadScene(mScene.LOGIN);
+		//SceneManager.LoadScene(mScene.LOGIN);
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.LOGIN));
 	}
 
 	public void onClickRegister()
