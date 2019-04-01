@@ -13,23 +13,23 @@ public class FirstLevelMusic : MonoBehaviour
     //Storing references and start to play
     void Start()
     {
-        trackSource = AudioManager.instance.musicSource;
+        trackSource = AudioManager.shared.musicSource;
 
-        randomClip = AudioManager.instance.GetRandomClip();
-        firstClip = AudioManager.instance.trackList[0];
+        randomClip = AudioManager.shared.GetRandomClip();
+        firstClip = AudioManager.shared.trackList[0];
 
         if (!trackSource[0].isPlaying)
         {
-            if (AudioManager.instance.randomPlay)
+            if (AudioManager.shared.randomPlay)
             {
-               StartCoroutine(AudioManager.instance.FadeIn(trackSource[0], randomClip));
+               StartCoroutine(AudioManager.shared.FadeIn(trackSource[0], randomClip));
 
                //AudioManager.instance.PlayMusic(trackSource[0], randomClip, 0f);
                //StartCoroutine(AudioManager.instance.FadeInAudioSource(trackSource[0]));
             }
             else
             {
-                StartCoroutine(AudioManager.instance.FadeIn(trackSource[0], firstClip));
+                StartCoroutine(AudioManager.shared.FadeIn(trackSource[0], firstClip));
 
                 //AudioManager.instance.PlayMusic(trackSource[0], firstClip, 0f);
                 //StartCoroutine(AudioManager.instance.FadeInAudioSource(trackSource[0]));

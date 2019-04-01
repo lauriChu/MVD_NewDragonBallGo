@@ -7,13 +7,13 @@ public class LevelMusic : MonoBehaviour {
     // Update is called once per frame
     void Start()
     {
-            if (AudioManager.instance.randomPlay)
+            if (AudioManager.shared.randomPlay)
             {
-                AudioManager.instance.CrossfadeRandomMusic();
+                AudioManager.shared.CrossfadeRandomMusic();
             }
             else
             {
-                AudioManager.instance.CrossfadeNextMusic();
+                AudioManager.shared.CrossfadeNextMusic();
             }
     }
 }

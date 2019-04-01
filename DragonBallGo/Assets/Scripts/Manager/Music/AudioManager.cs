@@ -6,12 +6,13 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     //Variables for music audiosources 
-    public static AudioManager instance = null;
+    public static AudioManager shared = null;
 
     public bool randomPlay = false;
     
     public AudioSource[] musicSource;
     public AudioClip[] trackList;
+    public AudioClip themeClip;
 
     public AudioMixerGroup track01;
     public AudioMixerGroup track02;
@@ -26,12 +27,12 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         //Create Singleton
-        if (instance == null)
+        if (shared == null)
         {
-            instance = this;
+            shared = this;
 
         }
-        else if (instance != null)
+        else if (shared != null)
         {
             Destroy(gameObject);
         }
