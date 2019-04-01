@@ -9,7 +9,7 @@ public class LoadingManager : MonoBehaviour
     public static LoadingManager Shared = null;
     
     // Minimum time for show loading
-    private const float MIN_TIME_TO_SHOW = 18f;
+    private const float MIN_TIME_TO_SHOW = 2f;
 
     // Elapsed time since loading shows
     private float timeElapsed;
