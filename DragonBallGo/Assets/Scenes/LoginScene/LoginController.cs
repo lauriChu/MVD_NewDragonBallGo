@@ -27,7 +27,7 @@ public class LoginController : MonoBehaviour {
 
 	public void onBack()
 	{
-		Destroy(GameObject.Find("Audio"));
+		//Destroy(GameObject.Find("Audio"));
 		SceneManager.LoadScene(mScene.INIT);
 	}
 	public void onLogin() 
@@ -39,7 +39,8 @@ public class LoginController : MonoBehaviour {
 		}else{
 			Debug.Log("Doing Login");
 			infoText.text = "";
-			StartCoroutine(ExecuteGet(Rest.getLoginRequest(userField.text, passwordInputField.text)));
+			LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.MENU));
+			//StartCoroutine(ExecuteGet(Rest.getLoginRequest(userField.text, passwordInputField.text)));
 		}
 	} 
 
