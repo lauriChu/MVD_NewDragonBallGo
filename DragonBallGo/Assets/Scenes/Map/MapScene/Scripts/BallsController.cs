@@ -118,16 +118,16 @@
 		void Awake()
 		{
 			updatingBalls = new Balls();
-			updatingBalls.balls = new List<Ball>(7);
+			/*updatingBalls.balls = new List<Ball>(7);
 			updatingBalls.balls.Add(new Ball());
 			updatingBalls.balls.Add(new Ball());
 			updatingBalls.balls.Add(new Ball());
 			updatingBalls.balls.Add(new Ball());
 			updatingBalls.balls.Add(new Ball());
 			updatingBalls.balls.Add(new Ball());
-			updatingBalls.balls.Add(new Ball());
+			updatingBalls.balls.Add(new Ball());*/
 			
-			StartCoroutine(ExecuteGet(Rest.getBallsRequest(PersistentData.getSelectedGameId())));
+			//StartCoroutine(ExecuteGet(Rest.getBallsRequest(PersistentData.getSelectedGameId())));
 
 			LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
 			_map.OnInitialized += () => _isInitialized = true;
@@ -148,6 +148,24 @@
 				_targetPosition = Conversions.GeoToWorldPosition(e.Location,
 																 _map.CenterMercator,
 																 _map.WorldRelativeScale).ToVector3xz();
+				if (balls == null)
+				{	
+					balls = new Balls();
+					balls.balls = new List<Ball>(8);
+					double lat_increment = -0.0001529;
+					double lng_increment = -0.0000414;
+					for (int i = 1; i < 9; i++){
+						Ball ball = new Ball();
+						ball.id = i.ToString();
+						ball.catched = "0";
+						ball.game = "1";
+						ball.user = "1";
+						ball.lat = (e.Location.x + lat_increment*i).ToString();
+						ball.lng = (e.Location.y + lng_increment*i).ToString();
+						balls.balls.Add(ball);
+					}
+					UpdateBallsPosition();
+				}
 			}
 		}
 
@@ -158,37 +176,54 @@
 																 	_map.CenterMercator,
 																 	_map.WorldRelativeScale).ToVector3xz();
 				ball1.transform.position = position;
-
+				if(balls.balls[0].catched == "1" && balls.balls[0].user == "1") {
+					ball1.active = false;
+				}
 
 				Vector3 position2 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[1].lat), double.Parse(balls.balls[1].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball2.transform.position = position2;
+				if(balls.balls[1].catched == "1" && balls.balls[0].user == "1") {
+					ball2.active = false;
+				}
 
 				Vector3 position3 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[2].lat), double.Parse(balls.balls[2].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball3.transform.position = position3;
+				if(balls.balls[2].catched == "1" && balls.balls[2].user == "1") {
+					ball3.active = false;
+				}
 
 				Vector3 position4 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[3].lat), double.Parse(balls.balls[3].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball4.transform.position = position4;
-
+				if(balls.balls[3].catched == "1" && balls.balls[3].user == "1") {
+					ball4.active = false;
+				}
 				Vector3 position5 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[4].lat), double.Parse(balls.balls[4].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball5.transform.position = position5;
-
+				if(balls.balls[4].catched == "1" && balls.balls[4].user == "1") {
+					ball5.active = false;
+				}
 				Vector3 position6 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[5].lat), double.Parse(balls.balls[5].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball6.transform.position = position6;
-
+				if(balls.balls[5].catched == "1" && balls.balls[5].user == "1") {
+					ball5.active = false;
+				}
 				Vector3 position7 = Conversions.GeoToWorldPosition(new Vector2d(double.Parse(balls.balls[6].lat), double.Parse(balls.balls[6].lng)),
 																	_map.CenterMercator,
 																	_map.WorldRelativeScale).ToVector3xz();
 				ball7.transform.position = position7;
+				if(balls.balls[6].catched == "1" && balls.balls[6].user == "1") {
+					ball7.active = false;
+				}
 			}
 		}
 
@@ -240,11 +275,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 1");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall);
+								Ball ball = new Ball();
+								ball.id = balls.balls[0].id;
+								ball.lat = balls.balls[0].lat;
+								ball.lng = balls.balls[0].lng;
+								ball.game = balls.balls[0].game;
+								ball.user = balls.balls[0].user;
+								ball.catched = "1";
+								balls.balls[0] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall);
 							}
 							break;
 						case "Ball2":
@@ -254,11 +299,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 2");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall2);
+								Ball ball = new Ball();
+								ball.id = balls.balls[1].id;
+								ball.lat = balls.balls[1].lat;
+								ball.lng = balls.balls[1].lng;
+								ball.game = balls.balls[1].game;
+								ball.user = balls.balls[1].user;
+								ball.catched = "1";
+								balls.balls[1] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall2);
 							}
 							break;
 						case "Ball3":
@@ -268,11 +323,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 3");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall3);
+								Ball ball = new Ball();
+								ball.id = balls.balls[2].id;
+								ball.lat = balls.balls[2].lat;
+								ball.lng = balls.balls[2].lng;
+								ball.game = balls.balls[2].game;
+								ball.user = balls.balls[2].user;
+								ball.catched = "1";
+								balls.balls[2] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall3);
 							}
 							break;
 						case "Ball4":
@@ -282,11 +347,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 4");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall4);
+								Ball ball = new Ball();
+								ball.id = balls.balls[3].id;
+								ball.lat = balls.balls[3].lat;
+								ball.lng = balls.balls[3].lng;
+								ball.game = balls.balls[3].game;
+								ball.user = balls.balls[3].user;
+								ball.catched = "1";
+								balls.balls[3] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall4);
 							}
 							break;
 						case "Ball5":
@@ -296,11 +371,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 5");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall5);
+								Ball ball = new Ball();
+								ball.id = balls.balls[4].id;
+								ball.lat = balls.balls[4].lat;
+								ball.lng = balls.balls[4].lng;
+								ball.game = balls.balls[4].game;
+								ball.user = balls.balls[4].user;
+								ball.catched = "1";
+								balls.balls[4] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall5);
 							}
 							break;
 						case "Ball6":
@@ -310,11 +395,21 @@
 							{
 								// PVP 
 								Debug.Log("Touched Ball1 6");
-								SceneManager.LoadScene(mScene.BATTLE);
+								SceneManager.LoadScene(mScene.BATTLE, LoadSceneMode.Additive);
+								//SceneManager.LoadScene(mScene.BATTLE);
 							}
 							else
 							{
-								catchedBall(selectedBall6);
+								Ball ball = new Ball();
+								ball.id = balls.balls[5].id;
+								ball.lat = balls.balls[5].lat;
+								ball.lng = balls.balls[5].lng;
+								ball.game = balls.balls[5].game;
+								ball.user = balls.balls[5].user;
+								ball.catched = "1";
+								balls.balls[5] = ball;
+								UpdateBallsPosition();
+								//catchedBall(selectedBall6);
 							}
 							break;
 					}

@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour {
 
+	private Game newGame;
+	private bool status = false;
+	private string error;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,14 +24,24 @@ public class MenuController : MonoBehaviour {
 	}
 
 	public void onNewGame(){
+		Debug.Log("games");
+		//StartCoroutine(ExecuteGetLocation());
+		navigateToNewGame();
+	}
 
+	private void navigateToNewGame() {
+		SceneManager.LoadScene(mScene.MAP);
 	}
 
 	IEnumerator ExecuteGetLocation()
     {
+		
         // First, check if user has location service enabled
         if (!Input.location.isEnabledByUser)
-            yield return "0";
+            status = false;
+			error = "Enable location";
+			Debug.Log(error);
+            yield break;
 
         // Start service before querying location
         Input.location.Start();
@@ -44,20 +58,26 @@ public class MenuController : MonoBehaviour {
         if (maxWait < 1)
         {
             print("Timed out");
-            yield return "1";
+			status = false;
+			error = "Timed out";
+			Debug.Log(error);
+            yield break;
         }
 
         // Connection has failed
         if (Input.location.status == LocationServiceStatus.Failed)
         {
             print("Unable to determine device location");
-            yield return "2";
+            status = false;
+			error = "Timed out";
+			Debug.Log(error);
+            yield break;
         }
         else
         {
             // Access granted and location value could be retrieved
             print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
-			Game newGame = new Game();
+			newGame = new Game();
 			newGame.id = "1";
 			newGame.lat = Input.location.lastData.latitude.ToString();
 			newGame.lng = Input.location.lastData.longitude.ToString();
@@ -65,6 +85,9 @@ public class MenuController : MonoBehaviour {
 			newGame.num_players = "1";
 			newGame.passphrase = "mvd";
 			newGame.radio = "5";
+
+			status = true;
+			navigateToNewGame();
 		}
 
         // Stop service if there is no need to query location updates continuously

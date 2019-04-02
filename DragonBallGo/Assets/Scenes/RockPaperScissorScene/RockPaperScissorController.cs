@@ -42,13 +42,15 @@ public class RockPaperScissorController : MonoBehaviour {
 	IEnumerator WIN()
 	{
 		yield return new WaitForSeconds(5);
-		SceneManager.LoadScene(mScene.MAP);
+		//SceneManager.LoadScene(mScene.MAP);
+		SceneManager.UnloadScene(mScene.BATTLE);
 	}
 
 	IEnumerator LOSE()
 	{
 		yield return new WaitForSeconds(5);
-		SceneManager.LoadScene(mScene.MAP);
+		SceneManager.UnloadScene(mScene.BATTLE);
+		//SceneManager.LoadScene(mScene.MAP);
 	}
 
 	public void onRock()
