@@ -27,8 +27,7 @@ public class LoginController : MonoBehaviour {
 
 	public void onBack()
 	{
-		//Destroy(GameObject.Find("Audio"));
-		SceneManager.LoadScene(mScene.INIT);
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.INIT));
 	}
 	public void onLogin() 
 	{
