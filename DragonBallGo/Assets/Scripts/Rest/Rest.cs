@@ -6,8 +6,8 @@ using UnityEngine.Networking;
 public class Rest {
 
 	// URL's
-	private static string URL = "http://ec2-52-15-203-194.us-east-2.compute.amazonaws.com/v1/";
-
+	private static string URL_OLD = "http://ec2-52-15-203-194.us-east-2.compute.amazonaws.com/v1/";
+	private static string URL = "https://ddcd6db7-f958-4035-bc28-0b095332c0b5.mock.pstmn.io/";
 	public static string getGamesUrl(string userId)
 	{
 		return URL + "games/" + userId;
@@ -36,6 +36,7 @@ public class Rest {
 	public static UnityWebRequest getLoginRequest(string username, string password){
 		UnityWebRequest request = UnityWebRequest.Get(getLoginUrl());
         	request.SetRequestHeader("Content-Type", "application/json");
+			request.SetRequestHeader("x-api-key","a6b1e5f42b6e494695561692d9c30b6c");
 			request.SetRequestHeader("Username", username);
 			request.SetRequestHeader("Password", password);
 		return request;

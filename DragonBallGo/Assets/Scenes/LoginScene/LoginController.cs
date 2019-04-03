@@ -39,7 +39,7 @@ public class LoginController : MonoBehaviour {
 			Debug.Log("Doing Login");
 			infoText.text = "";
 			LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.MENU));
-			//StartCoroutine(ExecuteGet(Rest.getLoginRequest(userField.text, passwordInputField.text)));
+			StartCoroutine(ExecuteGet(Rest.getLoginRequest(userField.text, passwordInputField.text)));
 		}
 	} 
 

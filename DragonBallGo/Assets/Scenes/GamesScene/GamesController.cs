@@ -35,7 +35,7 @@ public class GamesController : MonoBehaviour {
 	}
 	public void onBack()
 	{
-		SceneManager.LoadScene(mScene.MENU);
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.MENU));
 	}
 	
 	// Update is called once per frame

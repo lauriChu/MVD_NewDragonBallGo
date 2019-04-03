@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour {
 
 	public void onGames(){
 		Debug.Log("games");
-		SceneManager.LoadScene(mScene.GAMES);
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.GAMES));
 	}
 
 	public void onNewGame(){
@@ -96,11 +96,11 @@ public class MenuController : MonoBehaviour {
 
 	public void onJoinGame(){
 		Debug.Log("join game");
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.JOINGAME));
 	}
 
 	public void onOptions(){
-		Debug.Log("options");
-		//Destroy(GameObject.Find("Audio"));
-		SceneManager.LoadScene(mScene.INIT);
+		Debug.Log("Init");
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.INIT));
 	}
 }
