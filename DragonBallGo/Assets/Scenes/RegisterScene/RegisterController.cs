@@ -27,8 +27,8 @@ public class RegisterController : MonoBehaviour {
 
 	public void onBack()
 	{
-		Destroy(GameObject.Find("Audio"));
-		SceneManager.LoadScene(mScene.INIT);
+		//Destroy(GameObject.Find("Audio"));
+		LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.INIT));
 	}
 
 	public void onRegister() 
@@ -58,6 +58,7 @@ public class RegisterController : MonoBehaviour {
 		if (request.isNetworkError)
 		{
 			Debug.Log(request.error);
+			infoText.text = "Error ocurred. Try again later.";
 		}
 		else 
 		{
@@ -65,10 +66,10 @@ public class RegisterController : MonoBehaviour {
 				// Show results
 				Debug.Log("Returning:" + request.downloadHandler.text);
 				Debug.Log("to Main another time");
-
-				SceneManager.LoadScene(mScene.LOGIN);
+				infoText.text = "Registered!";
+				LoadingManager.Shared.Show(SceneManager.LoadSceneAsync(mScene.LOGIN));
 			} else {
-				infoText.text = "Error ocurred";
+				infoText.text = "Error ocurred. Try again later.";
 			}
 		}
 	}

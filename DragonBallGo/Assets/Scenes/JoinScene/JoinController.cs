@@ -24,6 +24,8 @@ public class JoinController : MonoBehaviour {
 		games = new Games();
 		games.games = new List<Game>();
 		searchField = GameObject.Find("NameField").GetComponent<InputField>();
+		allGames = new Games();
+		allGames.games = new List<Game>();
 		StartCoroutine(ExecuteGet(Rest.getAllGamesRequest()));
 	}
 	
