@@ -9,7 +9,7 @@ public class mScene {
     public static string MENU = "MenuScene";
     public static string GAMES = "GamesScene";
     public static string NEWGAME = "NewGameScene";
-    public static string JOINGAME = "JoinGameScene";
+    public static string JOINGAME = "JoinScene";
     public static string MAP = "MapScene";
     public static string BATTLE = "RockPaperScissorScene";
 }
