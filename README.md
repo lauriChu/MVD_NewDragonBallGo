@@ -42,17 +42,6 @@ Once the user finds a ball, he must make a game of scissors paper stone, choosin
 - Add chat for groups or games.
 - Be able to invite other members more easily.
 
-## Screenshots
 
-Left to Right - Reflection - Pearl Brightness Reflection - Iridescence
-
-![alt front](https://github.com/lauriChu/MVD_FirstCustomShader/blob/master/MVD_15_Shadows-master/1.PNG)
-
-Left to RIght - Iridescence - Pearl Brightness Reflection - Reflection
-
-![alt back](https://github.com/lauriChu/MVD_FirstCustomShader/blob/master/MVD_15_Shadows-master/2.PNG)
-
-## Links
-[https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/](https://www.gamedev.net/blogs/entry/2264817-idea-iridescent-shader/)
 
 
